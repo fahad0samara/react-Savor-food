@@ -22,7 +22,6 @@ Welcome to SavorFood, your one-stop destination for online food ordering. This p
 - **Database**: MongoDB
 - **Styling**: Tailwind CSS
 - **Authentication**: JWT (JSON Web Tokens)
-- **Deployment**: Heroku (Backend), Netlify (Frontend)
 
 ## Getting Started
 
