@@ -10,6 +10,7 @@ import { useDarkMode } from "../../hooks/useDarkMode";
 import log from "../../assets/Savor.svg";
 
 const Header = () => {
+  const cartItems = useSelector((state) => state.cart.items);
   const isDarkMode = useDarkMode();
 
   // State to track the scroll position
@@ -75,13 +76,16 @@ const Header = () => {
             </Link>
           </li>
 
-          {/* {isAuthenticated && !isAdmin && (
+      
+
+
+    
             <li className="md:mr-12 flex items-start">
-              <Link to="/cart" className="text-green-500 hover:text-green-400">
+              <Link to="/CartPage" className="text-green-500 hover:text-green-400">
                 <span className="ml-1">
                   <FiShoppingCart className="inline-block text-2xl md:text-2xl" />
                 </span>
-                {itemCount > 0 && (
+                {cartItems.length > 0 && (
                   <span
                     className="
                     inline-block
@@ -96,12 +100,13 @@ const Header = () => {
                   
                     "
                   >
-                    {itemCount}
+                    {cartItems.length}
                   </span>
                 )}
               </Link>
             </li>
-          )} */}
+     
+
 
           <>
             <li className="md:mr-12 ">

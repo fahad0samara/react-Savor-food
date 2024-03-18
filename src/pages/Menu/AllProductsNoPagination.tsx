@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
-import Loder from '../../loder/Loder';
+import Loader from '../../loder/Loder';
+import { addItemToCart } from '../../redux/cart/cartSlice';
+
 
 interface Product {
   _id: string;
@@ -20,12 +23,13 @@ interface Product {
 }
 
 const AllProductsNoPagination: React.FC = () => {
-
   const [loading, setLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("Salad");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  const dispatch = useDispatch(); // Get the dispatch function
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -57,16 +61,34 @@ const AllProductsNoPagination: React.FC = () => {
     setSelectedCategory(category);
   };
 
+  const handleAddToCart = (item: Product) => {
+    dispatch(addItemToCart({ // Dispatch the addItemToCart action with the selected product
+      id: item._id,
+      name: item.name,
+      price: item.price,
+      quantity: 1,
+      image: item.image,
+      Calories: item.calories,
+      ServingSize: item.servingSize,
+
+
+    }));
+
+    alert('Item added to cart');
+    console.log('Item added to cart:', item.name);
+    
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       {loading ? (
-      <Loder/>
+        <Loader />
       ) : (
         <>
           {/* Introduction text */}
           <p className="text-lg text-center text-gray-800 mb-8">Browse through our delicious selection of categories below:</p>
           <button
-            onClick={() => history.back()} 
+            onClick={() => history.back()}
             className="absolute top-4 left-4 p-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:bg-green-700"
           >
             Back
@@ -78,7 +100,7 @@ const AllProductsNoPagination: React.FC = () => {
                 key={category}
                 onClick={() => handleCategoryClick(category)}
                 className={`px-4 py-2  rounded-md focus:outline-none ${selectedCategory === category ? 'bg-green-100 hover:bg-green-50 text-black' : 'bg-green-500 hover:bg-green-600'}`}
-                style={{ minWidth: '120px' }} 
+                style={{ minWidth: '120px' }}
               >
                 {category}
               </button>
@@ -120,7 +142,7 @@ const AllProductsNoPagination: React.FC = () => {
                     <p className="text-gray-700 mb-2">Calories: {product.calories}</p>
                     <p className="text-gray-700 mb-2">Serving Size: {product.servingSize}</p>
                     <p className="text-gray-700 mb-4">Stock Quantity: {product.stockQuantity}</p>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                    <button onClick={() => handleAddToCart(product)} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                       Add to Cart
                     </button>
                   </div>

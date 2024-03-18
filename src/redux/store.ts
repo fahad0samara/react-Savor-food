@@ -8,6 +8,8 @@ import {
   import storage from "redux-persist/lib/storage";
 
   import darkModeReducer from "./DarkMode/darkModeSlice";
+  import cartReducer from "./cart/cartSlice";
+
   
   const persistConfig = {
     key: "root",
@@ -19,7 +21,7 @@ import {
     persistConfig,
     combineReducers({
     //   auth: authReducer,
-    //   cart: cartReducer,
+      cart: cartReducer,
       darkmode: darkModeReducer,
     })
   );

@@ -1,5 +1,5 @@
 import Footer from "../Footer/Footer";
-import ServiceStatistics from "../ServiceStatistics";
+import ServiceStatistics from "./ServiceStatistics";
 import Header from "./Header";
 import Hero from "./Hero";
 import Product from "./Product";
