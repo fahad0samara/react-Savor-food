@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { useDarkMode } from "../../hooks/useDarkMode";
 import log from "../../assets/Savor.svg";
+import { RootState } from "../../redux/store";
 
 const Header = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const isDarkMode = useDarkMode();
 
   // State to track the scroll position
@@ -76,18 +75,17 @@ const Header = () => {
             </Link>
           </li>
 
-      
-
-
-    
-            <li className="md:mr-12 flex items-start">
-              <Link to="/CartPage" className="text-green-500 hover:text-green-400">
-                <span className="ml-1">
-                  <FiShoppingCart className="inline-block text-2xl md:text-2xl" />
-                </span>
-                {cartItems.length > 0 && (
-                  <span
-                    className="
+          <li className="md:mr-12 flex items-start">
+            <Link
+              to="/CartPage"
+              className="text-green-500 hover:text-green-400"
+            >
+              <span className="ml-1">
+                <FiShoppingCart className="inline-block text-2xl md:text-2xl" />
+              </span>
+              {cartItems.length > 0 && (
+                <span
+                  className="
                     inline-block
                     text-xs
                     md:text-sm
@@ -99,14 +97,12 @@ const Header = () => {
                     ml-1
                   
                     "
-                  >
-                    {cartItems.length}
-                  </span>
-                )}
-              </Link>
-            </li>
-     
-
+                >
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
+          </li>
 
           <>
             <li className="md:mr-12 ">
