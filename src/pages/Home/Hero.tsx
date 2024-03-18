@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import image from '../assets/hero.jpg'
+import image from '../../assets/hero.jpg'
 
 
 function Hero() {
@@ -13,12 +13,12 @@ function Hero() {
         <div>
           <p className="bg-teal-accent-400 mb-4 inline-block rounded-full bg-green-200 px-3 py-px text-sm font-semibold tracking-wider text-green-900">Discover</p>
         </div>
-        <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-slate-700 sm:text-5xl sm:leading-snug">
+        <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-5xl sm:leading-snug">
           Delicious Food <br />
           from the Ocean
           <span className="inline-block text-green-500">Pacific</span>
         </h2>
-        <p className="text-base text-gray-600 md:text-lg">Explore our curated selection of fresh seafood dishes sourced from the Pacific Ocean. Dive into flavors that will tantalize your taste buds!</p>
+        <p className="text-base text-gray-500 md:text-lg">Explore our curated selection of fresh seafood dishes sourced from the Pacific Ocean. Dive into flavors that will tantalize your taste buds!</p>
       </div>
       <div className="flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 lg:justify-start">
         <Link 

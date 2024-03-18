@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { useDarkMode } from "../../hooks/useDarkMode";
-import log from "../assets/Savor.svg";
+import log from "../../assets/Savor.svg";
 
 const Header = () => {
   const isDarkMode = useDarkMode();

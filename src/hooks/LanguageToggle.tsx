@@ -9,7 +9,7 @@ const LanguageToggle = () => {
   const handleLanguageChange = (checked: any) => {
     const language = checked ? 'ar' : 'en';
     i18n.changeLanguage(language);
-    localStorage.setItem('selectedLanguage', language); // Store selected language in local storage
+    localStorage.setItem('selectedLanguage', language); 
   };
 
   useEffect(() => {
