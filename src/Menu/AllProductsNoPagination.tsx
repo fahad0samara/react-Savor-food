@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../apiConfig';
+import Loder from '../loder/Loder';
 
 interface Product {
   _id: string;
@@ -59,7 +60,7 @@ const AllProductsNoPagination: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {loading ? (
-        <p>Loading...</p>
+      <Loder/>
       ) : (
         <>
           {/* Introduction text */}
