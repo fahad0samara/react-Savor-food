@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import Contant from "../pages/Contant";
-import Home from "../Home/Home";
-import AllProductsNoPagination from "../Menu/AllProductsNoPagination";
+import Home from "../pages/Home/Home";
+import AllProductsNoPagination from "../pages/Menu/AllProductsNoPagination";
 
 
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { AiOutlineMenu } from "react-icons/ai";
-import { useDarkMode } from "../hooks/useDarkMode";
+import { useDarkMode } from "../../hooks/useDarkMode";
 import log from "../assets/Savor.svg";
 
 const Header = () => {

@@ -7,8 +7,8 @@ import {ToastContainer} from "react-toastify";
 
 import Router from './Router/Router';
 import LanguageToggle from './hooks/LanguageToggle';
-import AllProductsNoPagination from './Menu/AllProductsNoPagination';
-import Hero from './Home/Hero';
+import AllProductsNoPagination from './pages/Menu/AllProductsNoPagination';
+import Hero from './pages/Home/Hero';
 import FoodAppSection from './pages/FoodAppSection';
 
 

@@ -23,9 +23,9 @@ interface MenuItem {
 
   import {useSelector} from "react-redux";
   import {useDispatch} from "react-redux";
-  import SVGComponent2 from "../icons/SVGComponent2";
-import { AppDispatch, RootState } from "../redux/store";
-import API_URL from "../apiConfig";
+  import SVGComponent2 from "../../icons/SVGComponent2";
+import { AppDispatch, RootState } from "../../redux/store";
+import API_URL from "../../apiConfig";
   
   const Product = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
