@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
 import Loader from '../../loder/Loder';
 import { addItemToCart } from '../../redux/cart/cartSlice';
+import { toast } from 'react-toastify';
 
 
-interface Product {
+ export interface ProductItem {
+  [x: string]: any;
   _id: string;
   name: string;
   categories: { name: string }[];
@@ -24,17 +26,17 @@ interface Product {
 
 const AllProductsNoPagination: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("Salad");
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<ProductItem[]>([]);
 
-  const dispatch = useDispatch(); // Get the dispatch function
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>(`${API_URL}/products/all`);
+        const response = await axios.get<ProductItem[]>(`${API_URL}/products/all`);
         setProducts(response.data);
         const uniqueCategories = Array.from(new Set(response.data.flatMap(product => product.categories.map(category => category.name))));
         setCategories(uniqueCategories);
@@ -61,8 +63,8 @@ const AllProductsNoPagination: React.FC = () => {
     setSelectedCategory(category);
   };
 
-  const handleAddToCart = (item: Product) => {
-    dispatch(addItemToCart({ // Dispatch the addItemToCart action with the selected product
+  const handleAddToCart = (item: ProductItem) => {
+    dispatch(addItemToCart({
       id: item._id,
       name: item.name,
       price: item.price,
@@ -74,8 +76,16 @@ const AllProductsNoPagination: React.FC = () => {
 
     }));
 
-    alert('Item added to cart');
-    console.log('Item added to cart:', item.name);
+    toast.success(" item add to the cart", {
+      position: "bottom-center",
+      autoClose: 1990,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
     
   };
 

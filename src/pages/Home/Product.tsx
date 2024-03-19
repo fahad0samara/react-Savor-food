@@ -1,16 +1,5 @@
 
-interface MenuItem {
-    _id: string;
-    id: string;
-    isNewProduct: boolean;
-    image: string;
-    name: string;
-    category: {
-      name: string;
-    };
-    description: string;
-    price: number;
-  }
+
   
   import {useState, useEffect, useRef} from "react";
   import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
@@ -21,11 +10,12 @@ interface MenuItem {
   import {toast} from "react-toastify";
 
 
-  import {useSelector} from "react-redux";
   import {useDispatch} from "react-redux";
   import SVGComponent2 from "../../icons/SVGComponent2";
-import { AppDispatch, RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 import API_URL from "../../apiConfig";
+import { addItemToCart } from "../../redux/cart/cartSlice";
+import { ProductItem } from "../Menu/AllProductsNoPagination";
   
   const Product = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
@@ -36,7 +26,35 @@ import API_URL from "../../apiConfig";
     const [slidesToShow, setSlidesToShow] = useState(4);
   
     const [menuItems, setMenuItems] = useState([]);
+    
+    const handleAddToCart = (item: ProductItem) => {
+      dispatch(addItemToCart({
+        id: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        image: item.image,
+        Calories: item.calories,
+        ServingSize: item.servingSize,
   
+  
+      }));
+
+      toast.success(" item add to the cart", {
+        position: "bottom-center",
+        autoClose: 1990,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+
+  
+
+      
+    };
   
   
     const fetchMenuItems = async () => {
@@ -176,39 +194,6 @@ import API_URL from "../../apiConfig";
   
 
     const dispatch: AppDispatch = useDispatch();
-    // const handleAddToCart = (menuItem: MenuItem) => {
-    //   if (isAuthenticated) {
-    //     dispatch(
-    //       addItemToCart({
-    //         itemId: menuItem._id,
-    //         quantity: 1,
-    //         userId: userId || "",
-    //       })
-    //     );
-    //     toast.success(" item add to the cart", {
-    //       position: "bottom-center",
-    //       autoClose: 1990,
-    //       hideProgressBar: true,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: false,
-    //       progress: undefined,
-    //       theme: "light",
-    //     });
-    //   } else {
-    //     toast.info("Please login or register to add items to the cart.", {
-    //       position: "bottom-center",
-    //       autoClose: 2990,
-    //       hideProgressBar: true,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: false,
-    //       progress: 1,
-    //       theme: "light",
-    //     });
-    //   }
-    // };
-  
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-3">
         <div className="mt-4 text-center my-9">
@@ -241,7 +226,7 @@ import API_URL from "../../apiConfig";
           onMouseEnter={() => setIsAutoScrolling(false)}
           onMouseLeave={() => setIsAutoScrolling(true)}
         >
-          {menuItems.map((menuItem: MenuItem) => (
+          {menuItems.map((menuItem: ProductItem) => (
             <div
               key={menuItem.id}
               className={
@@ -279,9 +264,9 @@ import API_URL from "../../apiConfig";
                     ${menuItem.price.toFixed(2)}
                   </span>
                   <button
-                    // onClick={() => 
-                    //     // handleAddToCart(menuItem)
-                    // }
+                    onClick={() => handleAddToCart(
+                      menuItem
+                    )}
                     className="bg-green-500 hover:bg-green-700 text-white px-3 py-2 rounded-lg transform -skew-x-12 transition duration-300"
                   >
                     Add to Cart
