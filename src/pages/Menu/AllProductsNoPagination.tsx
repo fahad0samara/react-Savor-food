@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
 import Loader from '../../loder/Loder';
 import { addItemToCart } from '../../redux/cart/cartSlice';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { FiShoppingCart } from 'react-icons/fi';
+import { RootState } from '../../redux/store';
 
 
  export interface ProductItem {
@@ -25,6 +28,9 @@ import { toast } from 'react-toastify';
 }
 
 const AllProductsNoPagination: React.FC = () => {
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  
+
   const [loading, setLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -63,22 +69,24 @@ const AllProductsNoPagination: React.FC = () => {
     setSelectedCategory(category);
   };
 
+
   const handleAddToCart = (item: ProductItem) => {
-    dispatch(addItemToCart({
-      id: item._id,
-      name: item.name,
-      price: item.price,
-      quantity: 1,
-      image: item.image,
-      Calories: item.calories,
-      ServingSize: item.servingSize,
-
-
-    }));
-
-    toast.success(" item add to the cart", {
-      position: "bottom-center",
-      autoClose: 1990,
+    dispatch(
+      addItemToCart({
+        id: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        image: item.image,
+        Calories: item.calories,
+        ServingSize: item.servingSize,
+      })
+    );
+  
+    // Ensure toast.success is called
+    toast.success("Item added to the cart", {
+      
+      autoClose: 3000, 
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -86,7 +94,6 @@ const AllProductsNoPagination: React.FC = () => {
       progress: undefined,
       theme: "light",
     });
-    
   };
 
   return (
@@ -95,14 +102,31 @@ const AllProductsNoPagination: React.FC = () => {
         <Loader />
       ) : (
         <>
-          {/* Introduction text */}
+<div className="flex justify-between items-center mx-auto max-w-screen-xl px-4 py-2">
+  <button
+    onClick={() => history.back()}
+    className="p-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:bg-green-700"
+  >
+    Back
+  </button>
+  <li className="flex items-center ml-auto">
+    <Link to="/CartPage" className="flex items-center text-green-500 hover:text-green-400">
+      <span className="ml-1">
+        <FiShoppingCart className="text-2xl" />
+      </span>
+      {cartItems.length > 0 && (
+        <span className="inline-block bg-green-500 text-white rounded-full px-2 py-1 ml-1 text-xs md:text-sm">
+          {cartItems.length}
+        </span>
+      )}
+    </Link>
+  </li>
+</div>
+
+
+         
           <p className="text-lg text-center text-gray-800 mb-8">Browse through our delicious selection of categories below:</p>
-          <button
-            onClick={() => history.back()}
-            className="absolute top-4 left-4 p-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:bg-green-700"
-          >
-            Back
-          </button>
+      
           {/* Category buttons */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map(category => (

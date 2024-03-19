@@ -17,7 +17,7 @@ const CartPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto  ">
       
       <button
         onClick={() => history.back()}
@@ -49,7 +49,7 @@ const CartPage: React.FC = () => {
         </div>
           
           ) : (
-      <div className="sm:flex shadow-md h-screen">
+      <div className="sm:flex shadow-md  ">
         <div className="w-full sm:w-3/4 px-10 py-10 ">
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>

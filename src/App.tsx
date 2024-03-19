@@ -4,12 +4,9 @@ import DarkModeToggle from './hooks/DarkModeToggle';
 import { useDarkMode } from './hooks/useDarkMode';
 
 import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Router from './Router/Router';
-import LanguageToggle from './hooks/LanguageToggle';
-import AllProductsNoPagination from './pages/Menu/AllProductsNoPagination';
-import Hero from './pages/Home/Hero';
-import FoodAppSection from './pages/FoodAppSection';
 
 
 function App() {
@@ -20,7 +17,9 @@ function App() {
       isDarkMode ? "bg-black text-white" : "bg-white text-black"
     }`}
   >
+
     <DarkModeToggle />
+    <ToastContainer />
 
     <Router />
    
