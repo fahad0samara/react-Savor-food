@@ -1,5 +1,5 @@
 import {Player} from "@lottiefiles/react-lottie-player";
-import { useDarkMode } from "../hook/useDarkMode";
+import { useDarkMode } from "../hooks/useDarkMode";
 import animationData from "../icons/cart.json";
 
 
