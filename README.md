@@ -3,14 +3,13 @@
 
 Welcome to SavorFood, your one-stop destination for online food ordering. This platform allows users to browse through a variety of delicious dishes, add them to their cart, and place orders conveniently from the comfort of their homes.
 
-
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/fahad0samara/react-Savor-food/assets/90055525/0c33097e-2ffa-459e-8ebd-a97174966499" alt="Screenshot 1" width="400"/>
+      <img src="https://github.com/fahad0samara/react-Savor-food/assets/90055525/fbaf5427-190e-4642-8c0b-533daa847032" alt="Screenshot 1" width="400"/>
     </td>
     <td align="center">
-      <img src="https://github.com/fahad0samara/react-Savor-food/assets/90055525/70fb2528-3547-49ed-b9df-a4fb89a0a047" alt="Screenshot 2" width="400"/>
+      <img src="https://github.com/fahad0samara/react-Savor-food/assets/90055525/ae138b93-f808-436e-b8d1-f6acc4484631" alt="Screenshot 2" width="400"/>
     </td>
   </tr>
   <tr>
